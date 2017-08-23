@@ -7,53 +7,43 @@ class Graph extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: nokiaData.companyDetailsList[0].values
+      data: nokiaData.companyDetailsList[0].values,
+      googleData: null
     };
   }
 
   componentDidMount() {
     const data = this.state.data;
 
-    // googleTrends
-    //   .relatedQueries({ keyword: data.NIMI, hl: 'fi' })
-    //   .then(queries => console.log(queries));
-    // googleTrends
-    //   .relatedTopics({ keyword: data.NIMI, hl: 'fi' })
-    //   .then(topics => console.log(topics));
-
-    const url = 'https://trends.google.com/trends/api/explore';
-    const req = {
-      comparisonItem: [
-        {
-          keyword: 'Nokia Oyj',
-          hl: 'fi',
-          category: 0,
-          endTime: '2017-08-23T10:24:16.581Z',
-          startTime: '2004-01-01T00:00:00.000Z',
-          time: '2004-01-1 2017-08-23'
-        }
-      ],
-      category: 0,
-      property: ''
-    };
-    const opts = {
-      hl: 'fi',
-      tz: 300,
-      req: JSON.stringify(req)
-    };
-    fetch('/google-trends/nokia')
+    fetch(
+      '/google-queries/' + encodeURIComponent(data.NIMI.replace(/oyj/i, ''))
+    )
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        console.log(JSON.parse(data));
+        this.setState({ googleData: JSON.parse(data) });
       });
   }
 
   render() {
-    if (!this.state.data) {
+    const googleData = this.state.googleData;
+    if (!googleData) {
       return <div>Loading...</div>;
     }
 
-    return <div />;
+    console.log(googleData);
+
+    return (
+      <ol>
+        {googleData.default.rankedList[0].rankedKeyword
+          .slice(0, 10)
+          .map(result =>
+            <li key={result.query}>
+              {result.query}
+            </li>
+          )}
+      </ol>
+    );
   }
 }
 

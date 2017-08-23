@@ -18,23 +18,88 @@ class CompanyData extends Component {
   }
 
   render() {
-    console.log(nokiaData);
+    var divStyle = {
+      margin: "1%"
+    };
+
     if (!this.state.data) {
       return <div>...loading... </div>;
     }
     return (
-      <ul>
-        <li>
-          <span>Nimi:</span>
+      <ul className="list-group" style={divStyle}>
+        <li className="list-group-item">
+          <span>Nimi: </span>
           <span>
             {this.state.data.NIMI}
           </span>
         </li>
-        <li>
-          <span>Nimi:</span>
+        <li className="list-group-item">
+          <span>Y-tunnus: </span>
           <span>
-            {this.state.data.NIMI}
+            {this.state.data.YTUNNUS}
           </span>
+        </li>
+        <li className="list-group-item">
+          <span>Yritys perustettu: </span>
+          <span>
+            {this.state.data.YTUNNUS_ALKUPVM}
+          </span>
+        </li>
+        <li className="list-group-item">
+          <span>Kotipaikka: </span>
+          <span>
+            {this.state.data.KOTIPAIKKATXT}
+          </span>
+        </li>
+        <li className="list-group-item">
+          <span>Toimitusjohtaja: </span>
+          <span>
+            {this.state.data.TOIMITUSJOHTAJA}
+          </span>
+        </li>
+        <li className="list-group-item">
+          <span>Liikevaihto: </span>
+          <span>
+            {this.state.data.LIIKEVAIHTO}
+          </span>
+        </li>
+        <li className="list-group-item">
+          <span>Osakkeiden määrä: </span>
+          <span>
+            {this.state.data.OSAKKEIDENLKM}
+          </span>
+        </li>
+        <li className="list-group-item">
+          <span>Toimialakuvaus: </span>
+          <span>
+            {this.state.data.TOIMIALAKUVAUSTXT}
+          </span>
+        </li>
+        <li className="list-group-item">
+          <span>Hallituksen puheenjohtaja: </span>
+          <span>
+            {this.state.data.chairman_name}
+          </span>
+        </li>
+        <li className="list-group-item">
+          <span>Päätilintarkastaja: </span>
+          <span>
+            {this.state.data.auditor_name}
+          </span>
+        </li>
+        <li className="list-group-item">
+          <span>Tilintarkastaja: </span>
+          <span>
+            {this.state.data.auditing_company}
+          </span>
+        </li>
+        <li className="list-group-item">
+          <span>Johtoryhmä: </span>
+          {this.state.data.membersOfTheBoard.map(memberOfTheBoard =>
+            <span>
+              {memberOfTheBoard.NIMI} <br />
+            </span>
+          )}
         </li>
       </ul>
     );

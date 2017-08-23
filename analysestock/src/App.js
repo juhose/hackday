@@ -6,9 +6,15 @@ import GoogleTrends from "./components/GoogleTrends";
 
 class App extends Component {
   render() {
+    var contStyle = {
+      background: "#00c4e0"
+    };
+
     return (
       <div>
-        <CompanyData />
+        <div className="container" style={contStyle}>
+          <CompanyData />
+        </div>
         <GoogleTrends />
       </div>
     );

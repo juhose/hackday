@@ -41,7 +41,7 @@ class Graph extends React.Component {
       tz: 300,
       req: JSON.stringify(req)
     };
-    fetch(url + '?' + queryString.stringify(opts))
+    fetch('/google-trends/nokia')
       .then(response => response.json())
       .then(data => {
         console.log(data);

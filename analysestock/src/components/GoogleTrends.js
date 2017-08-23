@@ -1,20 +1,24 @@
 import React from 'react';
+import googleTrends from 'google-trends-api';
+import nokiaData from '../nokia.json';
 
 class Graph extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: null
+      data: nokiaData.companyDetailsList[0].values
     };
   }
 
   componentDidMount() {
-    const url =
-      'http://stock-api-staging.kauppalehti.media:80/api/stock/graph/NOKIA/ALL';
+    const data = this.state.data;
 
-    fetch(url).then(response => response.json()).then(data => {
-      this.setState({ data });
-    });
+    googleTrends
+      .relatedQueries({ keyword: data.NIMI, hl: 'fi' })
+      .then(queries => console.log(queries));
+    googleTrends
+      .relatedTopics({ keyword: data.NIMI, hl: 'fi' })
+      .then(topics => console.log(topics));
   }
 
   render() {

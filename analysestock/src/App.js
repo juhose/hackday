@@ -1,11 +1,17 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import CompanyData from "./components/CompanyData";
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+import CompanyData from './components/CompanyData';
+import GoogleTrends from './components/GoogleTrends';
 
 class App extends Component {
   render() {
-    return <CompanyData />;
+    return (
+      <div>
+        <CompanyData />
+        <GoogleTrends />
+      </div>
+    );
   }
 }
 

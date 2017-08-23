@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import CompanyData from "./components/CompanyData";
+import GoogleTrends from "./components/GoogleTrends";
 
 class App extends Component {
   render() {
@@ -10,8 +11,11 @@ class App extends Component {
     };
 
     return (
-      <div className="container" style={contStyle}>
-        <CompanyData />
+      <div>
+        <div className="container" style={contStyle}>
+          <CompanyData />
+        </div>
+        <GoogleTrends />
       </div>
     );
   }

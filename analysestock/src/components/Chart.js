@@ -27,27 +27,35 @@ export default class Chart extends React.Component {
     console.log("new Date(1982, 1, 1)", new Date(1982, 1, 1));
     return (
       <div>
-        <VictoryChart
-          width={1200}
-          height={400}
-          scale={{ x: "time" }}
-          style={chartStyle}
-          containerComponent={
-            <VictoryZoomContainer
-              responsive={false}
-              dimension="x"
-              zoomDomain={this.state.zoomDomain}
-              onDomainChange={this.handleZoom.bind(this)}
-            />
-          }
+        <svg
+          style={{
+            background: "#ccdee8",
+            boxSizing: "border-box",
+            display: "inline",
+            padding: 0,
+            margin: 20,
+            fontFamily: "'Fira Sans', sans-serif",
+            width: "100%",
+            height: "auto"
+          }}
+          viewBox="0 0 450 350"
         >
-          <VictoryLine
-            style={{
-              data: { stroke: "tomato" }
-            }}
-            data={this.props.data}
-          />
-        </VictoryChart>
+          <g transform={"translate(0, 40)"}>
+            <VictoryLine
+              style={{
+                data: { stroke: "tomato" }
+              }}
+              data={this.props.data}
+              domain={{
+                x: [new Date(1999, 1, 1), new Date(2016, 1, 1)],
+                y: [2, 15]
+              }}
+              scale={{ x: "time", y: "linear" }}
+              standalone={false}
+              style={{ stroke: "#e95f46", strokeWidth: 2 }}
+            />
+          </g>
+        </svg>
       </div>
     );
   }

@@ -5,7 +5,15 @@ import CompanyData from "./components/CompanyData";
 
 class App extends Component {
   render() {
-    return <CompanyData />;
+    var contStyle = {
+      background: "#00c4e0"
+    };
+
+    return (
+      <div className="container" style={contStyle}>
+        <CompanyData />
+      </div>
+    );
   }
 }
 

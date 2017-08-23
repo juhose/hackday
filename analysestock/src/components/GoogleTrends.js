@@ -1,7 +1,7 @@
-import React from 'react';
-import googleTrends from 'google-trends-api';
-import queryString from 'query-string';
-import nokiaData from '../nokia.json';
+import React from "react";
+import googleTrends from "google-trends-api";
+import queryString from "query-string";
+import nokiaData from "../nokia.json";
 
 class Graph extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class Graph extends React.Component {
     const data = this.state.data;
 
     fetch(
-      '/google-queries/' + encodeURIComponent(data.NIMI.replace(/oyj/i, ''))
+      "/google-queries/" + encodeURIComponent(data.NIMI.replace(/oyj/i, ""))
     )
       .then(response => response.json())
       .then(data => {
@@ -34,15 +34,20 @@ class Graph extends React.Component {
     console.log(googleData);
 
     return (
-      <ol>
-        {googleData.default.rankedList[0].rankedKeyword
-          .slice(0, 10)
-          .map(result =>
-            <li key={result.query}>
-              {result.query}
-            </li>
-          )}
-      </ol>
+      <div style={{ margin: "1.5%" }}>
+        <div style={{ background: "#f7f7f7", height: "40px" }}>
+          <h4 style={{ padding: 10 }}>Yritykseen liittyvät hakusanat</h4>
+        </div>
+        <ol className="list-group">
+          {googleData.default.rankedList[0].rankedKeyword
+            .slice(0, 10)
+            .map(result =>
+              <li className="list-group-item" key={result.query}>
+                {result.query}
+              </li>
+            )}
+        </ol>
+      </div>
     );
   }
 }
